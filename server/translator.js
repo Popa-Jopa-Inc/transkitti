@@ -46,5 +46,4 @@ const defaultTranslationPipeline = await pipeline(
   "Xenova/nllb-200-distilled-600M"
 );
 
-const translator = new Translator(defaultTranslationPipeline);
-export default translator;
+export const translator = new Translator(defaultTranslationPipeline);

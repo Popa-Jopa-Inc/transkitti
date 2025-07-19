@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { Translator } from "./translator.mjs";
+import { Translator } from "./translator.js";
 
 test("translate uses translator", async (context) => {
   const translationPipelineSpy = context.mock.fn(async (sent, opts) => [

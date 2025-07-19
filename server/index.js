@@ -1,12 +1,19 @@
 import Fastify from 'fastify'
 import { languages } from './languages.js'
+import { translator } from './translator.js'
 
 const fastify = Fastify({
   logger: true
 })
 
 fastify.get('/available-languages', (_, reply) => {
-  reply.send(languages)
+  reply.send(languages);
+})
+
+fastify.get('/translate', async (request, reply) => {
+  const { srcLang, tgtLang, text } = request.query;
+  const translation = await translator.translate(srcLang, tgtLang, text);
+  reply.send({ translation });
 })
 
 fastify.listen({ port: 3000 }, (err, address) => {
