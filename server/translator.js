@@ -5,6 +5,15 @@ export class Translator {
     this.translationPipeline = translationPipeline;
   }
 
+  static async forProduction() {
+    const defaultTranslationPipeline = await pipeline(
+      "translation",
+      "Xenova/nllb-200-distilled-600M",
+    );
+
+    return new Translator(defaultTranslationPipeline);
+  }
+
   async translate(srcLang, tgtLang, text) {
     const sentences = this.#splitSentences(text);
     let translation = "";
@@ -39,10 +48,3 @@ export class Translator {
     return result;
   }
 }
-
-const defaultTranslationPipeline = await pipeline(
-  "translation",
-  "Xenova/nllb-200-distilled-600M",
-);
-
-export const translator = new Translator(defaultTranslationPipeline);

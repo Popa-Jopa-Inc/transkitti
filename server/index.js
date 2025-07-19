@@ -1,10 +1,12 @@
 import Fastify from "fastify";
 import { languages } from "./languages.js";
-import { translator } from "./translator.js";
+import { Translator } from "./translator.js";
 
 const fastify = Fastify({
   logger: true,
 });
+
+const translator = await Translator.forProduction();
 
 fastify.get("/available-languages", (_, reply) => {
   reply.send(languages);
