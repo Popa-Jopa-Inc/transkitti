@@ -4,7 +4,7 @@ import { Translator } from "./translator.js";
 
 describe("Translator", () => {
   it("should handle single sentence with punctuation", async () => {
-    const tSpy = mock.fn(async (sent, opts) => [
+    const tSpy = mock.fn(async (sent) => [
       { translation_text: sent.toUpperCase() },
     ]);
     const tr = new Translator(tSpy);
