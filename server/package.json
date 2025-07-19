@@ -9,6 +9,6 @@
 		"fastify-cli": "^7.4.0"
 	},
 	"scripts": {
-    "start": "fastify start index.js"
-  }
+		"start": "fastify start index.js"
+	}
 }
