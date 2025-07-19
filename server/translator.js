@@ -12,7 +12,6 @@ export class Translator {
     for (let i = 0; i < sentences.length; i += 2) {
       const sentence = sentences[i];
       const punctuation = sentences[i + 1] || "";
-
       const result = await this.translationPipeline(sentence, {
         src_lang: srcLang,
         tgt_lang: tgtLang,
@@ -25,7 +24,7 @@ export class Translator {
   }
 
   #splitSentences(text) {
-    const regex = /([^.!?]+)([.!?]+\s*)/g;
+    const regex = /([^.!?]+)([.!?]+\s*)*/g;
     const result = [];
     let match;
 

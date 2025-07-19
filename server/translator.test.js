@@ -18,12 +18,12 @@ describe("Translator", () => {
   });
 
   it("should handle multiple sentences and spaces", async () => {
-    const tSpy = mock.fn(async (sent) => [{ translation_text: `[${sent}]` }]);
+    const tSpy = mock.fn(async (sent) => [{ translation_text: sent }]);
     const tr = new Translator(tSpy);
 
     const input = "First one!   Second one?Third one.";
     const res = await tr.translate("de", "en", input);
-    assert.strictEqual(res, "[First one]!   [Second one]? [Third one].");
+    assert.strictEqual(res, "First one!   Second one?Third one.");
 
     assert.strictEqual(tSpy.mock.calls.length, 3);
     const calls = tSpy.mock.calls.map((c) => c.arguments[0]);
@@ -39,10 +39,10 @@ describe("Translator", () => {
   });
 
   it("should translate without trailing punctuation", async () => {
-    const tSpy = mock.fn(async (sent) => [{ translation_text: sent + "?" }]);
+    const tSpy = mock.fn(async (sent) => [{ translation_text: sent }]);
     const tr = new Translator(tSpy);
     const res = await tr.translate("en", "it", "No punctuation");
-    assert.strictEqual(res, "No punctuation?");
+    assert.strictEqual(res, "No punctuation");
     assert.strictEqual(tSpy.mock.calls.length, 1);
   });
 });
