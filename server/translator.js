@@ -29,7 +29,7 @@ export class Translator {
       translation += result[0].translation_text + punctuation;
     }
 
-    return translation.trim();
+    return translation;
   }
 
   #splitSentences(text) {
